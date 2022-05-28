@@ -1,23 +1,17 @@
 import React from 'react';
 import logo from './assets/LOT-logo.svg';
+import ListView from './elements/listview/ListView';
+import SideBar from './elements/sidebar/SideBar';
+import Header from './shared/Header/Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <Header />
+      <div className="wrapper">
+        <SideBar />
+        <ListView />
+      </div>
     </div>
   );
 }
