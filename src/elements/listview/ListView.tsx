@@ -1,4 +1,6 @@
 import React from 'react';
+import { Pokedex } from '../../models/ApiInterface';
+import data from '../../models/flights.json';
 import FlightTile from './FlightTile/FlightTile';
 
 import s from './ListView.module.scss';
