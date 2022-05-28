@@ -1,0 +1,116 @@
+@import '../../../styles/variables.scss';
+
+.tile__header {
+  background-color: $primary-color;
+  color: white;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+  height: 40px;
+}
+
+span.logo {
+  background-color: rgba(255, 255, 255, 0.566);
+  padding: 6px;
+  border-radius: 6px;
+}
+
+span.price {
+  padding-right: 5px;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}
+
+.flight_tile span div {
+  text-align: right;
+}
+
+.price {
+  line-height: 100%;
+}
+
+.passengersnumber {
+  font-size: 9px;
+}
+
+.flight {
+  padding: 4px 8px;
+  color: black;
+
+}
+
+hr.solid {
+  border: 0;
+  border-bottom: 3px solid $primary-color;
+}
+
+hr.light {
+  border: 0;
+  border-bottom: 1.5px solid rgb(223, 223, 223);
+
+}
+
+.select_button {
+  background-color: $secondary-color;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.from_to {
+  padding: 8px 0;
+  color: black;
+}
+
+.airport {
+  display: inline-block;
+
+}
+
+.airport_code {
+  color: $primary-color;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.datetime {
+  font-size: 1.05em;
+}
+
+.date {
+  color: $primary-color;
+  font-size: 0.75em;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 8px 16px;
+  color: $secondary-color;
+}
+
+.divider::after,
+.divider::before {
+  content: "";
+  border: 0;
+  border-top: 1px solid black;
+  flex: 1;
+}
+
+.divider:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.divider:not(:empty)::after {
+  margin-left: 0.25em;
+}
