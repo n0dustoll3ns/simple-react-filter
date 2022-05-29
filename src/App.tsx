@@ -27,10 +27,12 @@ export default class App extends React.Component<IAppProps, FilterState> {
       transferFilterIsChecked: true,
       notransferFilterIsChecked: true,
       minPrice: 0,
-      maxprice: 999999,
+      maxprice: Infinity,
       accessibleAirlines: Object.values(Caption)
     }
     this.handleSorterSelected = this.handleSorterSelected.bind(this);
+    this.handleTransferFilterIsChecked = this.handleTransferFilterIsChecked.bind(this);
+    this.handleNotransferFilterIsChecked = this.handleNotransferFilterIsChecked.bind(this);
   }
 
   handleSorterSelected = (option: string) => {
@@ -39,15 +41,34 @@ export default class App extends React.Component<IAppProps, FilterState> {
     this.setState(newState);
   }
 
+  handleTransferFilterIsChecked = (isChecked: boolean) => {
+    let newState: FilterState = this.state;
+    newState.transferFilterIsChecked = isChecked
+    this.setState(newState);
+    console.log(newState)
+  }
+  handleNotransferFilterIsChecked = (isChecked: boolean) => {
+    let newState: FilterState = this.state;
+    newState.notransferFilterIsChecked = isChecked
+    this.setState(newState);
+    console.log(newState)
+  }
 
 
+  
   render() {
+    console.log(this.state)
+
     return (
       <div className='container'>
         <Header />
         <div className="wrapper">
-          <SideBar handleSorterSelected={this.handleSorterSelected} />
-          <ListView filter={this.state} />
+          <SideBar
+            handleSorterSelected={this.handleSorterSelected}
+            handleTransferFilterIsChecked={this.handleTransferFilterIsChecked}
+            handleNotransferFilterIsChecked={this.handleNotransferFilterIsChecked}
+          />
+          <ListView filterAndSort={this.state} />
         </div>
       </div>
     );

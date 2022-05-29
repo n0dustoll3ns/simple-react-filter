@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import s from '../../SideBar.module.scss';
 
 
-interface Props { }
+interface Props {
+  handleTransferFilterIsChecked: (option: boolean) => void
+  handleNotransferFilterIsChecked: (option: boolean) => void
+}
 
 export const TransferFilter = (props: Props) => {
 
@@ -11,9 +14,11 @@ export const TransferFilter = (props: Props) => {
   const [isCheckedNotransfer, setIsCheckedNoTransfer] = useState(true);
   const handleTransferChange = (changeEvent: React.ChangeEvent<HTMLInputElement>): void => {
     setIsCheckedTransfer(changeEvent.target.checked);
+    props.handleTransferFilterIsChecked(changeEvent.target.checked);
   };
   const handleNoTransferChange = (changeEvent: React.ChangeEvent<HTMLInputElement>): void => {
     setIsCheckedNoTransfer(changeEvent.target.checked);
+    props.handleNotransferFilterIsChecked(changeEvent.target.checked);
   };
 
 

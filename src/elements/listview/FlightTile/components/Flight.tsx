@@ -54,7 +54,7 @@ export const Flight = (props: Props) => {
         </div>
         <div className={s.datetime}>
           <span className={s.date}>
-          {props.arrivalDate.getDate()} {monthNames[props.arrivalDate.getMonth()]}. gy
+          {props.arrivalDate.getDate()} {monthNames[props.arrivalDate.getMonth()]}.
           </span>
           <span className={s.time}>
             &nbsp;{props.arrivalDate.getHours() < 10 ? '0' + props.arrivalDate.getHours() : props.arrivalDate.getHours()}
@@ -64,8 +64,7 @@ export const Flight = (props: Props) => {
         </div>
       </div>
       <div className={s.divider}>
-        <span className={props.numberOfTransfer > 0 ? '' : s.unshow}>{props.numberOfTransfer}
-          пересадка</span>
+        <span className={props.numberOfTransfer > 0 ? '' : s.unshow}>{props.numberOfTransfer} пересадка</span>
       </div>
       <div className={s.company}>
         Рейс выполняет: {props.airlines}
