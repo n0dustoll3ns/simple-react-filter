@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/simple-react-filter/static/css/main.2869515c.css",
+    "main.js": "/simple-react-filter/static/js/main.adab3dc3.js",
+    "static/media/LOT-logo.svg": "/simple-react-filter/static/media/LOT-logo.510ce82ea97f8e2e361ad62e67f6a64e.svg",
+    "index.html": "/simple-react-filter/index.html",
+    "main.2869515c.css.map": "/simple-react-filter/static/css/main.2869515c.css.map",
+    "main.adab3dc3.js.map": "/simple-react-filter/static/js/main.adab3dc3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2869515c.css",
+    "static/js/main.adab3dc3.js"
+  ]
+}
