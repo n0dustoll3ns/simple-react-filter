@@ -68,8 +68,11 @@ export default function ListView(props: Props) {
           <FlightTile flight={e.flight} />
         ))}
       </ul>
-      <div className={s.button__wrapper}>
+      <div className={flights.length + 1 >= numberOfFlights ? s.button__wrapper : s.unshow}>
         <button onClick={handleShowMore}>Показать ещё</button>
+      </div>
+      <div className={flights.length != 0 ? s.unshow : ''}>
+        ПО ВАШЕМУ ЗАПРОСУ РЕЙСЫ ОТСУТСТВУЮТ
       </div>
     </div>
   );
