@@ -10,6 +10,10 @@ export interface Props {
   handleSorterSelected: (option: string) => void
   handleTransferFilterIsChecked: (option: boolean) => void
   handleNotransferFilterIsChecked: (option: boolean) => void
+  handleMinPrice: (value: string) => void
+  handleMaxPrice: (value: string) => void
+  handleAirlinesFilter: (value: string[]) => void
+
 }
 
 export default function SideBar(props: Props) {
@@ -18,8 +22,12 @@ export default function SideBar(props: Props) {
       <Sorter handleSorterSelected={props.handleSorterSelected} />
       <TransferFilter
         handleTransferFilterIsChecked={props.handleTransferFilterIsChecked} handleNotransferFilterIsChecked={props.handleNotransferFilterIsChecked} />
-      <PriceFilter />
-      <CompanyFilter />
+      <PriceFilter
+        handleMinPrice={props.handleMinPrice}
+        handleMaxPrice={props.handleMaxPrice} />
+      <CompanyFilter
+        handleAirlinesFilter={props.handleAirlinesFilter}
+      />
     </div>
   );
 }

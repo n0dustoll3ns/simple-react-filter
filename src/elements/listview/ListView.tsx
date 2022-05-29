@@ -1,7 +1,7 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import { useState } from 'react';
 import { FilterState } from '../../App';
-import { FlightElement, Pokedex } from '../../models/API';
+import { FlightElement, Leg, Pokedex, Segment } from '../../models/API';
 import data from '../../models/flights.json';
 import FlightTile from './FlightTile/FlightTile';
 import s from './ListView.module.scss';
@@ -12,19 +12,35 @@ export default function ListView(props: Props) {
   const mock: Pokedex = JSON.parse(JSON.stringify(data))
 
   /* ----------------- FILTER -----------------*/
+  /* ---------------- transfer ----------------*/
 
-
-  let filteredFlights: FlightElement[] = mock.result.flights.filter((e: FlightElement) =>
-    (e.flight.legs[0].segments.length <= 2 || e.flight.legs[1].segments.length <= 2) === (props.filterAndSort.notransferFilterIsChecked) ||
-    (e.flight.legs[0].segments.length > 2 || e.flight.legs[1].segments.length > 2) === (props.filterAndSort.transferFilterIsChecked)
+  let filteredFlights: FlightElement[] = mock.result.flights.filter(
+    (e: FlightElement) =>
+      (((e.flight.legs[0].segments.length <= 1) && (e.flight.legs[1].segments.length <= 1)) && (props.filterAndSort.notransferFilterIsChecked)) ||
+      (((e.flight.legs[0].segments.length > 1) || (e.flight.legs[1].segments.length > 1)) && (props.filterAndSort.transferFilterIsChecked))
   );
+  /* --------^^^----- transfer -------^^^------*/
+  /* ---------------- price ----------------*/
+  filteredFlights = filteredFlights.filter((e: FlightElement) => (
+    (Number(e.flight.price.total.amount) >= props.filterAndSort.minPrice) &&
+    (Number(e.flight.price.total.amount) <= props.filterAndSort.maxPrice)
+  ))
+  /* --------^^^----- price -------^^^------*/
 
+  /* ---------------- airlines ----------------*/
+  filteredFlights = filteredFlights.filter((e: FlightElement) => {
+    let legsFilterArray: string[] = []
+    e.flight.legs.forEach((el: Leg) => el.segments.forEach((elem: Segment) => {
+      legsFilterArray.push(elem.airline.caption)
+    }));
+    let include = false;
+    legsFilterArray.forEach((element: string) => {
+      if (props.filterAndSort.accessibleAirlines.includes(element)) { include = true }
+    })
+    return include
+  });
+  /* --------^^^----- airlines -------^^^------*/
   /* --------^^^------ FILTER --------^^^------*/
-
-
-  
-
-
   /* ----------------- SORTER -----------------*/
   const sorterFunc = (
     props.filterAndSort.sorterSelectedOption === 'ascending_price') ?
@@ -58,7 +74,3 @@ export default function ListView(props: Props) {
     </div>
   );
 }
-function sorterFunc(sorterFunc: any): FlightElement[] {
-  throw new Error('Function not implemented.');
-}
-

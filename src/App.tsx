@@ -13,7 +13,7 @@ export type FilterState = {
   transferFilterIsChecked: boolean;
   notransferFilterIsChecked: boolean;
   minPrice: number;
-  maxprice: number;
+  maxPrice: number;
   accessibleAirlines: string[]
 };
 
@@ -27,14 +27,16 @@ export default class App extends React.Component<IAppProps, FilterState> {
       transferFilterIsChecked: true,
       notransferFilterIsChecked: true,
       minPrice: 0,
-      maxprice: Infinity,
+      maxPrice: Infinity,
       accessibleAirlines: Object.values(Caption)
     }
     this.handleSorterSelected = this.handleSorterSelected.bind(this);
     this.handleTransferFilterIsChecked = this.handleTransferFilterIsChecked.bind(this);
     this.handleNotransferFilterIsChecked = this.handleNotransferFilterIsChecked.bind(this);
-  }
+    this.handleMinPrice = this.handleMinPrice.bind(this);
+    this.handleMaxPrice = this.handleMaxPrice.bind(this);
 
+  }
   handleSorterSelected = (option: string) => {
     let newState: FilterState = this.state;
     newState.sorterSelectedOption = option
@@ -45,20 +47,32 @@ export default class App extends React.Component<IAppProps, FilterState> {
     let newState: FilterState = this.state;
     newState.transferFilterIsChecked = isChecked
     this.setState(newState);
-    console.log(newState)
   }
   handleNotransferFilterIsChecked = (isChecked: boolean) => {
     let newState: FilterState = this.state;
     newState.notransferFilterIsChecked = isChecked
     this.setState(newState);
-    console.log(newState)
   }
 
+  handleMinPrice = (value: string) => {
+    let newState: FilterState = this.state;
+    newState.minPrice = value === '' ? 0 : Number(value)
+    this.setState(newState);
+  }
 
-  
+  handleMaxPrice = (value: string) => {
+    let newState: FilterState = this.state;
+    newState.maxPrice = value === '' ? Infinity : Number(value)
+    this.setState(newState);
+  }
+
+  handleAirlinesFilter = (airlinesList: string[]) => {
+    let newState: FilterState = this.state;
+    newState.accessibleAirlines = airlinesList
+    this.setState(newState);
+  }
+
   render() {
-    console.log(this.state)
-
     return (
       <div className='container'>
         <Header />
@@ -67,8 +81,14 @@ export default class App extends React.Component<IAppProps, FilterState> {
             handleSorterSelected={this.handleSorterSelected}
             handleTransferFilterIsChecked={this.handleTransferFilterIsChecked}
             handleNotransferFilterIsChecked={this.handleNotransferFilterIsChecked}
+            handleMinPrice={this.handleMinPrice}
+            handleMaxPrice={this.handleMaxPrice}
+            handleAirlinesFilter={this.handleAirlinesFilter}
+
           />
-          <ListView filterAndSort={this.state} />
+          <ListView
+            filterAndSort={this.state}
+          />
         </div>
       </div>
     );
