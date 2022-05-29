@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 import s from '../../SideBar.module.scss';
 
-interface Props { }
+interface Props {
+  handleSorterSelected: (option: string) => void
+}
 
 export const Sorter = (props: Props) => {
 
@@ -10,7 +12,8 @@ export const Sorter = (props: Props) => {
   const isRadioSelected = (value: string): boolean => selectedOption === value;
   const handleOptionChange = (changeEvent: React.ChangeEvent<HTMLInputElement>): void => {
     setSelectedOption(changeEvent.currentTarget.value);
-  };
+    props.handleSorterSelected(changeEvent.currentTarget.value)
+};
 
 
 
@@ -20,7 +23,7 @@ export const Sorter = (props: Props) => {
       <form>
         <div className="radio">
           <label>
-            <input type="radio" value="ascending_price" name='ascending_price'
+            <input type="radio" value="ascending_price"
               checked={isRadioSelected("ascending_price")}
               onChange={handleOptionChange} />
             - по возрастанию цены

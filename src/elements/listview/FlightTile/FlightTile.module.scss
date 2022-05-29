@@ -16,6 +16,12 @@ span.logo {
   border-radius: 6px;
 }
 
+li {
+  list-style: none;
+  padding: 18px 0 25px 0;
+}
+
+
 span.price {
   padding-right: 5px;
 }
@@ -38,9 +44,9 @@ img {
 }
 
 .flight {
-  padding: 4px 8px;
+  padding: 4px;
   color: black;
-
+  padding-bottom: 20px;
 }
 
 hr.solid {
@@ -97,6 +103,7 @@ hr.light {
   text-align: center;
   padding: 8px 16px;
   color: $secondary-color;
+  padding-bottom: 0;
 }
 
 .divider::after,
@@ -107,10 +114,10 @@ hr.light {
   flex: 1;
 }
 
-.divider:not(:empty)::before {
-  margin-right: 0.25em;
+.company {
+  padding-top: 8px;
 }
 
-.divider:not(:empty)::after {
-  margin-left: 0.25em;
+.unshow {
+  display: none;
 }

@@ -292,9 +292,3 @@ export interface ServicesStatuses {
   exchange: AirlineAlliance;
   refund:   AirlineAlliance;
 }
-
-export function excludeUndisplayed(data: Pokedex):FlightElement[]{
-  let clearData:FlightElement[]=[];
-    
-  return data.result.flights;
-}

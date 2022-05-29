@@ -1,56 +1,74 @@
 import React from 'react'
 import s from '../FlightTile.module.scss'
 
-type Props = {}
+type Props = {
+  departureAirport: { name: string, uid: string, city?: string },
+  arrivalAirport: { name: string, uid: string, city?: string },
+  numberOfTransfer: number,
+  departureDate: Date,
+  arrivalDate: Date,
+  airlines: string,
+  durationHours: number,
+  durationMinutes: number,
+}
+
+const monthNames = ["янв", "фев.", "мар", "апр", "май", "июн",
+  "июл", "авг", "сен", "окт", "ноя", "дек"
+];
+
 
 export const Flight = (props: Props) => {
   return (
     <div className={s.flight}>
       <div className={s.from_to}>
         <span className={s.airport}>
-          Москва, Шереметьево &nbsp;
+          {props.departureAirport.city}, {props.departureAirport.name}&nbsp;
           <span className={s.airport_code}>
-            (SVO) →&nbsp;
+            ({props.departureAirport.uid}) →&nbsp;
           </span>
         </span>
         <span className={s.airport}>
-          ЛОНДОН, Лондон, Хитроу &nbsp;
+          {props.arrivalAirport.city}, {props.arrivalAirport.name}&nbsp;
           <span className={s.airport_code}>
-            (LHR)
+            ({props.arrivalAirport.uid})
           </span>
         </span>
       </div>
       <hr className={s.light} />
-
       <div className={s.details}>
         <div className={s.datetime}>
           <span className={s.time}>
-            20:40&nbsp;
+            {props.departureDate.getHours() < 10 ? '0' + props.departureDate.getHours() : props.departureDate.getHours()}
+            :
+            {props.departureDate.getMinutes() < 10 ? '0' + props.departureDate.getMinutes() : props.departureDate.getMinutes()}&nbsp;
           </span>
           <span className={s.date}>
-            18 авг. вт
+            {props.departureDate.getDate()} {monthNames[props.departureDate.getMonth()]}. вт
           </span>
         </div>
         <div className={s.duration}>
           <span className={s.time}>
             🕓&nbsp;
           </span>
-          14 ч 45 м
+          {props.durationHours} ч {props.durationMinutes} м
         </div>
         <div className={s.datetime}>
           <span className={s.date}>
-            19 авг. ср
+          {props.arrivalDate.getDate()} {monthNames[props.arrivalDate.getMonth()]}. gy
           </span>
           <span className={s.time}>
-            &nbsp;20:40
+            &nbsp;{props.arrivalDate.getHours() < 10 ? '0' + props.arrivalDate.getHours() : props.arrivalDate.getHours()}
+            :
+            {props.arrivalDate.getMinutes() < 10 ? '0' + props.arrivalDate.getMinutes() : props.arrivalDate.getMinutes()}
           </span>
         </div>
       </div>
       <div className={s.divider}>
-        1 пересадка
+        <span className={props.numberOfTransfer > 0 ? '' : s.unshow}>{props.numberOfTransfer}
+          пересадка</span>
       </div>
       <div className={s.company}>
-        Рейс выполняет: LOT Polish Airlines
+        Рейс выполняет: {props.airlines}
       </div>
     </div>
   )

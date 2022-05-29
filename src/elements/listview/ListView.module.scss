@@ -2,10 +2,18 @@
   grid-column: span 6;
   order: 0;
   color: #4B6A78;
+  
 }
 
+ul{
+  padding-inline-start: 10px;
+
+}
+.button__wrapper{
+  text-align: center;  
+}
 ul li{
   list-style: none;
-  padding: 18px 0;
+  padding: 18px 0 25px 0;
 }
 

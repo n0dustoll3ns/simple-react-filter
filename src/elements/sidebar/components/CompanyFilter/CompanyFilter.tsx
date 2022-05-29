@@ -1,6 +1,6 @@
 import React from 'react';
 import s from '../../SideBar.module.scss';
-import { Caption } from '../../../../models/ApiInterface';
+import { Caption } from '../../../../models/API';
 
 interface Props { }
 
